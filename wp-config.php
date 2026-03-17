@@ -36,7 +36,8 @@ define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
-
+define( 'WP_HOME', 'http://morrowandmorrrow.test/' );
+define( 'WP_SITEURL', 'http://morrowandmorrrow.test/' );
 /**#@+
  * Authentication unique keys and salts.
  *
@@ -85,9 +86,30 @@ $table_prefix = 'wp_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
+
+// Increase WordPress memory limit
+define('WP_MEMORY_LIMIT', '512M');
+
+// Increase maximum file upload size for WordPress
+@ini_set('upload_max_filesize', '128M');
+@ini_set('post_max_size', '128M');
+@ini_set('memory_limit', '512M');
+@ini_set('max_execution_time', '600');
+@ini_set('max_input_time', '600');
+
+// Additional WordPress upload settings
+define('WP_MAX_MEMORY_LIMIT', '512M');
+
+// Increase timeout for plugin operations
+define('FS_TIMEOUT', 600);
+
+// Force direct file system method (bypass FTP requirement)
+define('FS_METHOD', 'direct');
 
 
 

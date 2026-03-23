@@ -27,8 +27,19 @@
 				<div class="lg:col-span-1">
 					<h3 class="font-bold text-[#2E2E2E] text-lg mb-4 uppercase">Locations</h3>
 					<div class="space-y-2">
-						<p class="text-[#2E2E2E]">Ballito</p>
-						<p class="text-[#2E2E2E]">Richards Bay</p>
+						<?php 
+
+						// If not found, try 'options' (default)
+						if( empty($location_content) ) {
+							$location_content = get_field('location', 'options');
+						}
+						
+						if( !empty($location_content) ): 
+							$formatted_content = str_replace("\n", "<br>", $location_content);
+							?>
+							<div class="text-[#2E2E2E]"><?php echo wp_kses_post( $formatted_content ); ?></div>
+						<?php else: ?>
+						<?php endif; ?>
 					</div>
 				</div>
 
@@ -36,9 +47,19 @@
 				<div class="lg:col-span-1">
 					<h3 class="font-bold text-[#2E2E2E] text-lg mb-4 uppercase">Contact Us</h3>
 					<div class="space-y-2">
-						<p class="text-[#2E2E2E]">(035) 789 7246</p>
-						<p class="text-[#2E2E2E]">decest2rb6@morrows.co.za</p>
-						<p class="text-[#2E2E2E]">decest2ballito@morrows.co.za</p>
+						<?php 
+						
+						// If not found, try 'options' (default)
+						if( empty($contact_content) ) {
+							$contact_content = get_field('contact', 'options');
+						}
+						
+						if( !empty($contact_content) ): 
+							$formatted_content = str_replace("\n", "<br>", $contact_content);
+							?>
+							<div class="text-[#2E2E2E]"><?php echo wp_kses_post( $formatted_content ); ?></div>
+						<?php else: ?>
+						<?php endif; ?>
 					</div>
 				</div>
 

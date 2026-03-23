@@ -7,5 +7,13 @@
  * file and is applied both to the front end and in the block editor.
  */
 body {
-	@apply bg-background text-foreground font-sans;
+	@apply bg-background font-sans;
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	color: #2E2E2E;
+}
+
+/* Ensure all text elements use Inter and the specified color */
+p, span, div, li, td, th, label, input, textarea, select {
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	color: #2E2E2E;
 }

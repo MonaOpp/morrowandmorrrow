@@ -117,3 +117,152 @@
 .entry-content > .alignright {
 	@apply float-right ml-8;
 }
+
+/* Who We Are Page Styles */
+.who-we-are-page .entry-content p {
+	@apply leading-relaxed mb-6 text-lg;
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	color: #2E2E2E;
+}
+
+.who-we-are-page .entry-content h2 {
+	@apply text-2xl font-semibold text-primary mt-8 mb-4 uppercase tracking-wide;
+}
+
+.who-we-are-page .entry-content h1 {
+	@apply text-primary;
+}
+
+/* Enhanced prose styling for Who We Are page */
+.who-we-are-page .prose {
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	color: #2E2E2E;
+}
+
+.who-we-are-page .prose p {
+	@apply mb-6 leading-relaxed;
+	color: #2E2E2E;
+}
+
+.who-we-are-page .prose h2 {
+	@apply text-primary font-semibold uppercase tracking-wide mt-10 mb-4;
+}
+
+/* Location Accordion Component Styles */
+.location-accordion {
+	@apply space-y-4 w-full;
+}
+
+.location-card {
+	@apply relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 cursor-pointer;
+	background: linear-gradient(135deg, #9A1D1C 0%, #7A1615 100%);
+	min-height: 200px;
+}
+
+.location-card.active {
+	@apply transform;
+	min-height: 300px;
+}
+
+.location-header,
+.location-header-open {
+	@apply flex items-center justify-between h-full p-8;
+}
+
+.location-content,
+.location-content-expanded {
+	@apply flex-1 text-white;
+}
+
+.location-title {
+	@apply text-4xl font-bold uppercase tracking-wide text-white mb-0;
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+.location-content-expanded .location-title {
+	@apply text-2xl mb-4;
+	writing-mode: horizontal-tb;
+	text-orientation: initial;
+	transform: none;
+	position: static;
+}
+
+.location-details {
+	@apply mt-4;
+}
+
+.location-address {
+	@apply text-white text-lg leading-relaxed;
+	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+.location-image,
+.location-image-open {
+	@apply flex-shrink-0;
+	width: 300px;
+	height: 200px;
+}
+
+.location-image img,
+.location-image-open img {
+	@apply w-full h-full object-cover rounded-r-lg;
+}
+
+.location-open .location-image-open {
+	height: 250px;
+}
+
+/* Professional List Styles */
+.location-professionals {
+	@apply mt-6;
+}
+
+.location-professionals h4 {
+	@apply text-xl font-semibold text-white mb-4 uppercase tracking-wide;
+}
+
+.professionals-list {
+	@apply space-y-3;
+}
+
+.professional-item {
+	@apply flex items-center space-x-4 bg-white bg-opacity-20 rounded-lg p-4 backdrop-blur-sm;
+}
+
+.professional-photo {
+	@apply w-12 h-12 rounded-full object-cover flex-shrink-0;
+}
+
+.professional-info h5 {
+	@apply text-white font-semibold text-lg mb-1;
+}
+
+.professional-info .job-title {
+	@apply text-white text-opacity-90 text-sm;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.location-header,
+	.location-header-open {
+		@apply flex-col p-6;
+	}
+	
+	.location-image,
+	.location-image-open {
+		@apply w-full;
+		height: 150px;
+	}
+	
+	.location-title {
+		@apply text-2xl;
+		writing-mode: horizontal-tb;
+		text-orientation: initial;
+		transform: none;
+		position: static;
+	}
+	
+	.professional-item {
+		@apply flex-col text-center space-x-0 space-y-2;
+	}
+}

@@ -73,11 +73,9 @@ get_header();
 			endwhile; // End of the loop.
 			?>
 
-			<!-- Location Accordion Component - Shows Professionals by Location -->
-			<div class="our-team-section mt-16">
-				<?php get_template_part('template-parts/components/location-accordion', null, [
-					'context' => 'professional'
-				]); ?>
+			<!-- Location Accordion Component -->
+			<div class="our-locations-section mt-16">
+				<?php get_template_part('template-parts/components/location-accordion'); ?>
 			</div>
 
 		</main><!-- #main -->

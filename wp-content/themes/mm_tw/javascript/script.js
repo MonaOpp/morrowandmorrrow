@@ -68,3 +68,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Location Accordion - always keep one card active
+document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.location-accordion .location-card');
+    if (!cards.length) return;
+
+    // Set the first card as active by default
+    cards[0].classList.add('active');
+
+    cards.forEach(function (card) {
+        card.addEventListener('mouseenter', function () {
+            cards.forEach(function (c) {
+                c.classList.remove('active');
+            });
+            card.classList.add('active');
+        });
+    });
+});

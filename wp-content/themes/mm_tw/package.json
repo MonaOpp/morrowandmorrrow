@@ -25,6 +25,7 @@
 		"production:esbuild": "npm run development:esbuild -- --minify",
 		"production": "run-p \"production:**\"",
 		"prod": "npm run production",
+		"build": "npm run production",
 		"zip": "node node_scripts/zip.js mm_tw",
 		"bundle": "run-s production zip"
 	},

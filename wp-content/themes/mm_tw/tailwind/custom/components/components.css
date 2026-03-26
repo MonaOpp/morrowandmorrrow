@@ -332,3 +332,509 @@
     opacity: 1;
     max-height: 600px;
 }
+
+/* ─── Professional Cards (professionals taxonomy) ─── */
+.professionals-section {
+    @apply flex flex-col gap-16;
+}
+
+.prof-card {
+    @apply flex flex-col rounded-lg;
+}
+
+.prof-card__header {
+    @apply mb-4;
+}
+
+.prof-card--reversed .prof-card__header {
+    @apply text-right;
+}
+
+.prof-card__body {
+    @apply flex flex-col p-10;
+}
+
+.prof-card--reversed .prof-card__body {
+    @apply bg-white rounded-lg;
+}
+
+.prof-card__columns {
+    @apply flex flex-row;
+}
+
+.prof-card--reversed .prof-card__columns {
+    @apply flex-row-reverse;
+}
+
+.prof-card__image-col {
+    @apply w-1/4 flex-shrink-0 flex flex-col;
+}
+
+.prof-card__image {
+    @apply flex-1 ;
+}
+
+.prof-card__image img {
+    @apply w-full h-full object-cover rounded-lg pb-6 rounded-lg;
+    filter: grayscale(100%);
+}
+
+.prof-card__email {
+    @apply text-center py-3 rounded-lg;
+    background-color: #9A1D1C;
+}
+
+.prof-card__email a {
+    @apply text-sm font-semibold no-underline;
+    color: #fff;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+.prof-card__email a:hover {
+    @apply underline;
+}
+
+.prof-card__content {
+    @apply w-3/4 pl-10 flex flex-col;
+}
+
+.prof-card--reversed .prof-card__content {
+    @apply pl-0 pr-10;
+}
+
+.prof-card__name {
+    @apply text-7xl font-bold uppercase tracking-wider mb-1 pb-8;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+.prof-card__title {
+    @apply font-semibold uppercase tracking-wider mb-0 text-4xl pb-8;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+.prof-card__title-sep {
+    color: #9A1D1C;
+    margin: 0 0.25em;
+}
+
+.prof-card__description {
+    @apply text-sm leading-relaxed mb-6;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.prof-card__description p {
+    @apply mb-3 text-xl;
+}
+
+.prof-card__contact {
+    @apply flex flex-wrap gap-x-6 gap-y-1 text-xl pt-4;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+/* ─── Multidisciplinary Grid ─── */
+.professionals-multi-section {
+    @apply mt-0;
+}
+
+.professionals-multi-grid {
+    @apply grid gap-8;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.prof-mini-card {
+    @apply text-center;
+}
+
+.prof-mini-card__image {
+    @apply w-full aspect-[3/4] overflow-hidden rounded-lg relative;
+}
+
+.prof-mini-card__image img {
+    @apply w-full h-full object-cover;
+    filter: grayscale(100%);
+}
+
+.prof-mini-card__image::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 37.95%, rgba(0, 0, 0, 0.8) 90.39%);
+    pointer-events: none;
+}
+
+.prof-mini-card__overlay {
+    @apply absolute bottom-0 left-0 right-0 p-14 z-10;
+}
+
+.prof-mini-card__name {
+    @apply text-lg font-bold uppercase tracking-wider mb-1;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #fff;
+}
+
+.prof-mini-card__title {
+    @apply text-base uppercase tracking-wide;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #fff;
+}
+
+/* ─── Professional Cards Responsive ─── */
+@media (max-width: 1024px) {
+    .prof-card__description {
+        columns: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .prof-card__columns,
+    .prof-card--reversed .prof-card__columns {
+        @apply flex-col;
+    }
+
+    .prof-card--reversed .prof-card__header {
+        @apply text-left;
+    }
+
+    .prof-card__image-col {
+        @apply w-full mb-6;
+    }
+
+    .prof-card__image {
+		@apply mb-6;
+        height: 350px ;
+
+    }
+
+    .prof-card__body {
+        @apply p-6;
+    }
+
+    .prof-card__content {
+        @apply w-full pl-0;
+    }
+
+    .prof-card--reversed .prof-card__content {
+        @apply pr-0;
+    }
+
+    .professionals-multi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .prof-card__contact {
+        @apply flex-col gap-y-2;
+    }
+}
+
+@media (max-width: 480px) {
+    .professionals-multi-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ─── Service Navigation ─── */
+.service-nav {
+    @apply flex flex-wrap justify-center items-center mb-12;
+    gap: 0;
+}
+
+.service-nav__link {
+    @apply text-lg font-semibold uppercase tracking-wider no-underline px-4;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+    transition: color 200ms ease;
+}
+
+.service-nav__link:hover {
+    color: #9A1D1C;
+}
+
+.service-nav__sep {
+    @apply text-2xl font-light;
+    color: #9A1D1C;
+}
+
+/* ─── Service Section ─── */
+.service-section {
+    @apply mb-16;
+    scroll-margin-top: 2rem;
+}
+
+.service-section__title {
+    @apply text-6xl font-bold uppercase tracking-wider mb-4;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #9A1D1C;
+}
+
+.service-section__description {
+    @apply text-sm leading-relaxed mb-8 p-6;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+    background-color: #EDEDED;
+    border-radius: 8px;
+}
+
+.service-section__description p {
+    @apply mb-3;
+}
+
+.service-section__description p:last-child {
+    @apply mb-0;
+}
+
+/* ─── Service Accordion ─── */
+.service-accordion {
+    @apply flex flex-col gap-3;
+}
+
+.service-accordion__item {
+    @apply rounded-lg overflow-hidden;
+	background-color: #9A1D1C;
+}
+
+.service-accordion__trigger {
+    @apply w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    transition: background-color 200ms ease;
+}
+.service-accordion__trigger span {
+	color:#fff
+}
+
+
+.service-accordion__trigger[aria-expanded="true"] {
+    background-color: #9A1D1C;
+;
+    color: #fff;
+}
+
+.service-accordion__icon {
+    @apply flex-shrink-0 ml-4;
+    transition: transform 300ms ease;
+}
+
+.service-accordion__trigger[aria-expanded="true"] .service-accordion__icon {
+    transform: rotate(180deg);
+    color: #fff;
+}
+
+.service-accordion__panel {
+    @apply px-6 overflow-hidden;
+    max-height: 0;
+    transition: max-height 400ms ease, padding 400ms ease;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.service-accordion__panel.is-open {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    max-height: 2000px;
+	background-color:#B63938; 
+}
+
+.service-accordion__text {
+    @apply text-sm leading-relaxed mb-4;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+.service-accordion__text p {
+    @apply mb-3;
+	color:#fff;
+}
+.service-accordion__text ul li{
+	color:#fff;
+	list-style-type: disc;
+	
+}
+
+
+.service-accordion__blocks {
+    @apply grid gap-4 mb-4;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.service-accordion__block-card {
+    @apply flex flex-col items-start p-5;
+    background-color: #EDEDED;
+    border-radius: 8px;
+}
+
+.service-accordion__block-num {
+    @apply text-2xl font-bold mb-1;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #9A1D1C;
+}
+
+.service-accordion__block-text {
+    @apply text-xs font-semibold uppercase tracking-wide;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+/* ─── Service Accordion Grid/Table ─── */
+.service-accordion__grid {
+    @apply mb-6;
+}
+
+.service-accordion__grid-title {
+    @apply text-base font-bold uppercase tracking-wide mb-3;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+}
+
+.service-accordion__table {
+    @apply w-full text-sm;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    border-collapse: collapse;
+}
+
+.service-accordion__table thead th {
+    @apply text-left px-4 py-3 font-semibold uppercase tracking-wide text-xs;
+    background-color: #9A1D1C;
+    color: #fff;
+}
+
+.service-accordion__table thead th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.service-accordion__table thead th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.service-accordion__table tbody td {
+    @apply px-4 py-3;
+    color: #2E2E2E;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.service-accordion__table tbody tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+/* ─── Service Page Responsive ─── */
+@media (max-width: 768px) {
+    .service-nav {
+        @apply flex-col gap-2;
+    }
+
+    .service-nav__sep {
+        @apply hidden;
+    }
+
+    .service-section__title {
+        @apply text-6xl;
+		color:#9A1D1C;
+    }
+
+    .service-accordion__table {
+        @apply text-xs;
+    }
+
+    .service-accordion__table thead th,
+    .service-accordion__table tbody td {
+        @apply px-2 py-2;
+    }
+
+    .service-accordion__blocks {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .service-accordion__blocks {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* ─── Home Landing Page ─── */
+.home-page {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.home-page {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.home-page #wpadminbar {
+    display: none !important;
+}
+
+.home-landing {
+    @apply relative w-full flex flex-col overflow-hidden;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #fff;
+}
+
+.home-landing__bg {
+    @apply flex-1 flex items-end justify-center overflow-hidden min-h-0;
+}
+
+.home-landing__bg img {
+    @apply w-full max-w-5xl h-auto object-contain;
+}
+
+.home-landing__logo {
+    @apply absolute left-10;
+    bottom: 5rem;
+}
+
+.home-landing__logo img {
+    @apply h-auto;
+    width: 200px;
+}
+
+.home-landing__nav {
+    @apply flex items-center px-10 py-6 flex-shrink-0;
+    gap: 4rem;
+    border-top: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+.home-landing__nav-link {
+    @apply text-sm font-semibold uppercase tracking-widest no-underline;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #2E2E2E;
+    transition: color 200ms ease;
+}
+
+.home-landing__nav-link:hover {
+    color: #9A1D1C;
+}
+
+/* ─── Home Landing Responsive ─── */
+@media (max-width: 768px) {
+    .home-landing__logo {
+        @apply left-6;
+        bottom: 4.5rem;
+    }
+
+    .home-landing__logo img {
+        width: 150px;
+    }
+
+    .home-landing__nav {
+        @apply px-6 py-4 justify-center;
+        gap: 2rem;
+    }
+
+    .home-landing__nav-link {
+        @apply text-xs;
+    }
+}

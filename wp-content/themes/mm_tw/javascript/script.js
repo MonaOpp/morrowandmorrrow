@@ -86,3 +86,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Service Accordion
+document.addEventListener('DOMContentLoaded', function () {
+    const triggers = document.querySelectorAll('.service-accordion__trigger');
+    if (!triggers.length) return;
+
+    triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+            const panel = trigger.nextElementSibling;
+            const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+            // Close all other panels in the same accordion
+            const accordion = trigger.closest('.service-accordion');
+            accordion.querySelectorAll('.service-accordion__trigger').forEach(function (otherTrigger) {
+                if (otherTrigger !== trigger) {
+                    otherTrigger.setAttribute('aria-expanded', 'false');
+                    otherTrigger.nextElementSibling.classList.remove('is-open');
+                }
+            });
+
+            // Toggle current
+            trigger.setAttribute('aria-expanded', !isOpen);
+            panel.classList.toggle('is-open', !isOpen);
+        });
+    });
+
+    // Smooth scroll for service nav links
+    document.querySelectorAll('.service-nav__link').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});

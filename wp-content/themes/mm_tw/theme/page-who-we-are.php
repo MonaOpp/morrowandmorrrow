@@ -78,6 +78,11 @@ get_header();
 				<?php get_template_part('template-parts/components/location-accordion'); ?>
 			</div>
 
+			<div class="our-professionals-section mt-16">
+				<h2 class="text-7xl font-bold text-primary mb-8 uppercase">Professionals</h2>
+				<?php get_template_part('template-parts/components/professional-cards'); ?>
+			</div>
+
 		</main><!-- #main -->
 	</section><!-- #primary -->
 

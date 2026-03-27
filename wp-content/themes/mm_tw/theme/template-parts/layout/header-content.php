@@ -9,8 +9,8 @@
 
 ?>
 
-<header id="masthead" class="border-b border-gray-100 sticky top-0 z-50" style="background-color: #F8F8F8;">
-	<div class="max-w-content mx-auto px-6 py-4">
+<header id="masthead" class="top-0 z-50" style="background-color: #F8F8F8;">
+	<div class="max-w-content mx-auto px-6 py-6">
 		<div class="flex items-center justify-between">
 			
 			<!-- Logo Section -->

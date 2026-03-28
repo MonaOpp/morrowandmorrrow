@@ -16,31 +16,47 @@
 	font-size: 22px;
 	text-transform: uppercase;
 	color: #2E2E2E;
-	padding: 16px 32px;
+	padding: 16px 17px;
 	border-radius: 0;
 	font-weight: 700;
-	transition: all 200ms ease-in-out;
+	transition: color 500ms ease-in, background-color 500ms ease-in;
+	
+    @apply rounded-lg;
 }
 
-#primary-menu a:hover,
-#mobile-primary-menu a:hover {
+#primary-menu a:hover {
 	color: #fff;
 	background-color: #9A1D1C;
-	border-radius: 0;
+	@apply rounded-lg;
 	transform: none;
+}
+
+/* Active menu item animation on page load */
+@keyframes menu-active-ease-in {
+	0% {
+		background-color: transparent;
+		color: #2E2E2E;
+		margin-top: 0;
+		padding-top: 16px;
+	}
+	100% {
+		background-color: #9A1D1C;
+		color: #fff;
+		margin-top: -24px;
+		padding-top: 90px;
+	}
 }
 
 /* Active menu item styles */
 #primary-menu .current-menu-item a,
-#primary-menu .current_page_item a,
-#mobile-primary-menu .current-menu-item a,
-#mobile-primary-menu .current_page_item a {
+#primary-menu .current_page_item a {
+	@apply rounded-lg; 
 	background-color: #9A1D1C;
 	color: #fff;
-	border-radius: 8px;
 	position: relative;
 	margin-top: -24px;
-	padding-top: 40px;
+	padding-top: 90px;
+	animation: menu-active-ease-in 600ms ease-in forwards;
 }
 
 
@@ -60,23 +76,157 @@
 
 /* Mobile header layout */
 @media (max-width: 1023px) {
-	#masthead .custom-logo img {
-		@apply h-12 w-auto; /* Slightly smaller logo on mobile */
-	}
-	
 	#mobile-menu-button {
-		@apply p-2; /* Ensure proper touch target */
+		@apply p-2;
 	}
 	
 	#mobile-primary-menu a {
-		@apply text-lg px-4 py-3; /* Better mobile font size and padding */
+		@apply text-lg px-4 py-3;
 	}
+}
+
+/* Mobile burger and dropdown for inner pages */
+.mobile-burger {
+	color: #9A1D1C;
+}
+
+.mobile-menu-dropdown {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 50;
+	background-color: rgba(248, 248, 248, 0.98);
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: 100;
+	width: 48px;
+	height: 48px;
+	border-radius: 8px;
+	background-color: #9A1D1C;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	transition: opacity 300ms ease-in, transform 300ms ease-in;
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.scroll-to-top.visible {
+	display: flex;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+	background-color: #7a1615;
+}
+
+/* Desktop: only show on who-we-are and our-services pages */
+@media (min-width: 1024px) {
+	.scroll-to-top {
+		display: none !important;
+	}
+
+	.scroll-to-top.desktop-allowed {
+		display: none;
+	}
+
+	.scroll-to-top.desktop-allowed.visible {
+		display: flex !important;
+	}
+}
+
+/* Page transition: content flies in from the right */
+@keyframes page-fly-in {
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes page-fly-out {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-60px);
+	}
+}
+
+#content,
+#colophon {
+	animation: page-fly-in 350ms ease-in forwards;
+}
+
+#page.page-exit #content,
+#page.page-exit #colophon {
+	animation: page-fly-out 250ms ease-in forwards;
+}
+
+/* Home page transitions: fly down from top / fly up to top */
+@keyframes page-fly-down {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes page-fly-up {
+	0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+}
+
+.home-landing.page-enter {
+	animation: page-fly-down 500ms ease-in forwards;
+}
+
+.home-landing.page-exit {
+	animation: page-fly-up 350ms ease-in forwards;
 }
 
 /* Logo styles */
 .custom-logo img {
-	@apply h-16 w-auto;
-	max-width: 300px;
+	@apply h-26 w-auto;
+	max-width: 360px;
+}
+
+@media (max-width: 1023px) {
+	.custom-logo img {
+		@apply h-14 w-auto;
+		max-width: 200px;
+	}
+}
+
+@media (max-width: 480px) {
+	.custom-logo img {
+		@apply h-10 w-auto;
+		max-width: 150px;
+	}
 }
 
 /** * Post title styles
@@ -176,12 +326,12 @@
 
 /* Location Accordion Component Styles */
 .location-accordion {
-	@apply flex w-full;
+	@apply flex w-full rounded-lg;
 	height: 700px;
 }
 
 .location-card {
-	@apply relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 cursor-pointer flex-1;
+	@apply relative overflow-hidden shadow-lg transition-all duration-300 cursor-pointer flex-1;
 	background: #9A1D1C;
 	height: 700px;
 }
@@ -214,10 +364,11 @@
 
 .location-card.active .location-title {
 	color: #9A1D1C;
+    @apply text-7xl;
 }
 
 .location-content-expanded .location-title {
-	@apply text-2xl mb-4;
+	@apply text-7xl mb-4;
 	writing-mode: horizontal-tb;
 	text-orientation: initial;
 	transform: none;
@@ -243,18 +394,20 @@
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: 550px;
-	height: 700px;
 	padding: 0;
 	margin: 0;
 	pointer-events: none;
+	max-height: 80%;
+	max-width: 60%;
 }
 
 .location-image img,
 .location-image-open img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
+	object-position: bottom right;
+	transition: opacity 220ms ease;
 	padding: 0;
 	margin: 0;
 	display: block;
@@ -276,6 +429,8 @@
 
 .location-card.active .location-image-open {
 	display: block;
+	max-height: 90%;
+	max-width: 65%;
 }
 
 /* Professional List Styles */
@@ -292,7 +447,7 @@
 }
 
 .professional-item {
-	@apply flex items-center space-x-4 bg-white/20 rounded-lg p-4 backdrop-blur-sm;
+	@apply flex items-center space-x-4 rounded-lg p-4 backdrop-blur-sm;
 }
 
 .professional-photo {
@@ -330,8 +485,7 @@
 		position: relative;
 		bottom: auto;
 		right: auto;
-		width: 100%;
-		height: 250px;
+	
 	}
 	
 	.location-title {
@@ -517,6 +671,18 @@
 }
 
 @media (max-width: 768px) {
+    .our-professionals-section h2 {
+        @apply text-3xl;
+    }
+
+    .prof-card__name {
+        @apply text-3xl pb-4;
+    }
+
+    .prof-card__title {
+        @apply text-xl pb-4;
+    }
+
     .prof-card__columns,
     .prof-card--reversed .prof-card__columns {
         @apply flex-col;
@@ -831,7 +997,28 @@
 }
 
 .home-landing__bg img {
-    @apply w-full max-w-5xl h-auto object-contain;
+    @apply w-full max-w-5xl h-auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mobile header on home page */
+.home-landing__mobile-header {
+    @apply absolute top-0 left-0 right-0 flex items-center justify-between px-4 py-4 z-10;
+}
+
+.home-landing__burger {
+    @apply p-2;
+    color: #9A1D1C;
+}
+
+.home-landing__mobile-logo img {
+    @apply h-12 w-auto;
+}
+
+.home-landing__mobile-nav {
+    @apply absolute top-16 left-0 right-0 z-20 flex flex-col items-center gap-2 py-4;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .home-landing__logo {
@@ -865,27 +1052,30 @@
 .home-landing__nav-link:hover {
     color: #fff;
     background-color: #9A1D1C;
-    transform: scale(1.05);
 }
 
 /* ─── Home Landing Responsive ─── */
-@media (max-width: 768px) {
-    .home-landing__logo {
-        @apply left-6 ;
-        bottom: 4.5rem;
+@media (max-width: 1023px) {
+    .home-landing {
+        height: 100dvh;
     }
 
-    .home-landing__logo img {
-        width: 150px;
+    .home-landing__bg {
+        @apply flex-1 items-center;
+        padding-top: 4rem;
+    }
+
+    .home-landing__bg img {
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+    }
+
+    .home-landing__logo {
+        @apply hidden;
     }
 
     .home-landing__nav {
-        @apply px-6 py-4 justify-center;
-        gap: 2rem;
-    }
-
-    .home-landing__nav-link {
-        font-size: 18px;
-        padding: 12px 24px;
+        @apply hidden;
     }
 }

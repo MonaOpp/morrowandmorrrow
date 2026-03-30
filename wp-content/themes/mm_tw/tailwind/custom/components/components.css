@@ -326,19 +326,22 @@
 
 /* Location Accordion Component Styles */
 .location-accordion {
-	@apply flex w-full rounded-lg;
+	@apply flex w-full;
 	height: 700px;
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .location-card {
-	@apply relative overflow-hidden shadow-lg transition-all duration-300 cursor-pointer flex-1;
+	@apply relative overflow-hidden shadow-lg transition-all duration-300 cursor-pointer;
 	background: #9A1D1C;
 	height: 700px;
+	flex: 1 1 0%;
 }
 
 .location-card.active {
 	background: white;
-	flex-grow: 2;
+	flex: 0 0 80%;
 }
 
 .location-header,
@@ -357,14 +360,32 @@
 }
 
 .location-title {
-	@apply text-4xl font-bold uppercase tracking-wide mb-0 transition-colors duration-300;
+	@apply font-bold uppercase tracking-wide mb-0 transition-colors duration-300;
 	font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	font-size: 48px;
+	line-height: 1.1;
 	color: white;
 }
 
 .location-card.active .location-title {
 	color: #9A1D1C;
     @apply text-7xl;
+}
+
+/* Connect page: vertical title when closed */
+.contact-page .location-title {
+	font-size: 58px;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	transform: rotate(180deg);
+	white-space: nowrap;
+}
+
+.contact-page .location-card.active .location-title {
+	writing-mode: horizontal-tb;
+	text-orientation: initial;
+	transform: none;
+	white-space: normal;
 }
 
 .location-content-expanded .location-title {
@@ -377,6 +398,11 @@
 
 .location-details {
 	@apply mt-4;
+	display: none;
+}
+
+.location-card.active .location-details {
+	display: block;
 }
 
 .location-address {
@@ -397,17 +423,29 @@
 	padding: 0;
 	margin: 0;
 	pointer-events: none;
-	max-height: 80%;
-	max-width: 60%;
+
 }
 
-.location-image img,
-.location-image-open img {
-	width: 100%;
-	height: 100%;
+.location-image img {
+	width: auto;
+	height: auto;
 	object-fit: contain;
 	object-position: bottom right;
-	transition: opacity 220ms ease;
+	padding: 0;
+	margin: 0;
+	display: block;
+}
+
+/* Connect page: smaller closed image */
+.contact-page .location-image img {
+	max-height: 300px;
+}
+
+.location-image-open img {
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	object-position: bottom right;
 	padding: 0;
 	margin: 0;
 	display: block;
@@ -429,8 +467,73 @@
 
 .location-card.active .location-image-open {
 	display: block;
-	max-height: 90%;
-	max-width: 65%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+}
+
+.location-card.active .location-image-open img {
+	
+	object-fit: contain;
+	object-position: bottom right;
+}
+
+/* Desktop hover effect mirrors active state */
+@media (min-width: 769px) {
+	.location-card:hover {
+		background: white;
+		flex: 0 0 80%;
+	}
+
+	.location-card:hover .location-content {
+		color: #9A1D1C;
+	}
+
+	.location-card:hover .location-title {
+		color: #9A1D1C;
+		@apply text-7xl;
+	}
+
+	.contact-page .location-card:hover .location-title {
+		writing-mode: horizontal-tb;
+		text-orientation: initial;
+		transform: none;
+		white-space: normal;
+	}
+
+	.location-card:hover .location-details {
+		display: block;
+	}
+
+	.location-card:hover .location-address {
+		color: #9A1D1C;
+	}
+
+	.location-card:hover .location-image {
+		display: none;
+	}
+
+	.location-card:hover .location-image-open {
+		display: block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.location-card:hover .location-image-open img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: bottom right;
+	}
+
+	.location-card:hover .location-professionals {
+		opacity: 1;
+		max-height: 600px;
+	}
 }
 
 /* Professional List Styles */
@@ -465,39 +568,69 @@
 /* Responsive Design */
 @media (max-width: 768px) {
 	.location-accordion {
-		@apply flex-col space-y-4;
+		@apply flex-col;
 		height: auto;
 		gap: 0;
 	}
 
 	.location-card {
 		height: auto;
-		min-height: 300px;
+		min-height: auto;
+		background: white;
 	}
-	
+
+	.location-card.active {
+		background: white;
+	}
+
 	.location-header,
 	.location-header-open {
 		@apply flex-col p-6;
 	}
-	
+
+	/* Hide all images on mobile */
 	.location-image,
-	.location-image-open {
-		position: relative;
-		bottom: auto;
-		right: auto;
-	
+	.location-image-open,
+	.location-card.active .location-image-open {
+		display: none !important;
 	}
-	
+
 	.location-title {
 		@apply text-2xl;
 		writing-mode: horizontal-tb;
 		text-orientation: initial;
 		transform: none;
 		position: static;
+		color: #9A1D1C;
 	}
-	
+
+	.location-card.active .location-title {
+		@apply text-2xl;
+		color: #9A1D1C;
+	}
+
+	.location-content {
+		color: #9A1D1C;
+	}
+
+	/* Hide professional photos on mobile */
+	.professional-photo {
+		display: none;
+	}
+
+	.professional-name {
+		color: #2E2E2E;
+	}
+
 	.professional-item {
-		@apply flex-col text-center space-x-0 space-y-2;
+		@apply flex items-start space-x-0 p-2;
+	}
+
+	/* Show professionals on mobile without needing active state */
+	.location-professionals {
+		opacity: 1;
+		max-height: none;
+		overflow: visible;
 	}
 }
 /* Hide professionals by default, reveal when active */
@@ -570,9 +703,7 @@
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-.prof-card__email a:hover {
-    @apply underline;
-}
+
 
 .prof-card__content {
     @apply w-3/4 pl-10 flex flex-col;
@@ -851,10 +982,15 @@
     @apply mb-3;
 	color:#fff;
 }
+.service-accordion__text ul {
+	padding-left: 20px;
+	list-style-position: outside;
+}
+
 .service-accordion__text ul li{
 	color:#fff;
 	list-style-type: disc;
-	
+	padding-left: 0;
 }
 
 
@@ -864,7 +1000,7 @@
 }
 
 .service-accordion__block-card {
-    @apply flex flex-col items-start p-5;
+    @apply flex flex-col items-start p-20 ;
     background-color: #EDEDED;
     border-radius: 8px;
 }
@@ -876,9 +1012,9 @@
 }
 
 .service-accordion__block-text {
-    @apply text-xs font-semibold uppercase tracking-wide;
+    @apply text-xl font-semibold uppercase tracking-wide;
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    color: #2E2E2E;
+    color: #000000;
 }
 
 /* ─── Service Accordion Grid/Table ─── */
@@ -897,6 +1033,7 @@
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     border-collapse: collapse;
     background-color: #8B2C2B;
+    table-layout: fixed;
 }
 
 .service-accordion__table thead th {

@@ -39,6 +39,7 @@ get_header();
 				$location_name = get_field('location_name', $location->ID);
 				$location_address = get_field('location_address', $location->ID);
 				$image = get_field('location_image_closed', $location->ID);
+				$image_open = get_field('location_image_open', $location->ID);
 			?>
 			
 			<div class="location-card">
@@ -61,6 +62,13 @@ get_header();
 								alt="<?php echo esc_attr($location_name ?: $location->post_title); ?>" />
 						</div>
 					<?php endif; ?>
+
+				<?php if ($image_open): ?>
+					<div class="location-image-open">
+						<img src="<?php echo esc_url($image_open['url']); ?>" 
+							alt="<?php echo esc_attr($location_name ?: $location->post_title); ?> - open" />
+					</div>
+				<?php endif; ?>
 				</div>
 			</div>
 			

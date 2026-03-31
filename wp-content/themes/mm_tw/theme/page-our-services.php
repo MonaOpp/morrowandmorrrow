@@ -19,7 +19,7 @@ get_header();
 				<article id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?>>
 
 					<header class="entry-header mb-12 text-left bg-white">
-						<?php the_title( '<h1 class="entry-title text-5xl font-bold text-primary mb-4 uppercase tracking-wide py-8 px-6 rounded-lg">', '</h1>' ); ?>
+						<?php the_title( '<h1 class="entry-title text-6xl font-bold text-primary mb-4 uppercase tracking-wide py-8 px-6 rounded-lg">', '</h1>' ); ?>
 					</header>
 
 				</article>

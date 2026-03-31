@@ -514,7 +514,7 @@
 		display: none;
 	}
 
-	.location-card:hover .location-image-open {
+	.location-card:not(.active):hover .location-image-open {
 		display: block;
 		position: absolute;
 		bottom: 0;
@@ -523,7 +523,7 @@
 		height: 100%;
 	}
 
-	.location-card:hover .location-image-open img {
+	.location-card:not(.active):hover .location-image-open img {
 		width: 100%;
 		height: 100%;
 		object-fit: contain;
@@ -565,6 +565,19 @@
 	@apply text-white/90 text-sm;
 }
 
+/* Hide professionals by default, reveal when active */
+.location-professionals {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 300ms ease, max-height 300ms ease;
+}
+
+.location-card.active .location-professionals {
+    opacity: 1;
+    max-height: 600px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 	.location-accordion {
@@ -577,15 +590,19 @@
 		height: auto;
 		min-height: auto;
 		background: white;
+		cursor: default;
+		pointer-events: none;
+		flex: none;
 	}
 
 	.location-card.active {
 		background: white;
+		flex: none;
 	}
 
 	.location-header,
 	.location-header-open {
-		@apply flex-col p-6;
+		@apply flex-col p-3 h-auto;
 	}
 
 	/* Hide all images on mobile */
@@ -613,6 +630,23 @@
 		color: #9A1D1C;
 	}
 
+	/* Show details (address) on mobile */
+	.location-details {
+		display: block;
+	}
+
+	.location-address {
+		color: #9A1D1C;
+	}
+
+	/* Connect page: no vertical text on mobile */
+	.contact-page .location-title {
+		writing-mode: horizontal-tb;
+		text-orientation: initial;
+		transform: none;
+		white-space: normal;
+	}
+
 	/* Hide professional photos on mobile */
 	.professional-photo {
 		display: none;
@@ -633,18 +667,6 @@
 		overflow: visible;
 	}
 }
-/* Hide professionals by default, reveal when active */
-.location-professionals {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 300ms ease, max-height 300ms ease;
-}
-
-.location-card.active .location-professionals {
-    opacity: 1;
-    max-height: 600px;
-}
 
 /* ─── Professional Cards (professionals taxonomy) ─── */
 .professionals-section {
@@ -664,11 +686,11 @@
 }
 
 .prof-card__body {
-    @apply flex flex-col p-10;
+    @apply flex flex-col p-10 pl-0;
 }
 
 .prof-card--reversed .prof-card__body {
-    @apply bg-white rounded-lg;
+    @apply bg-white rounded-lg pl-10;
 }
 
 .prof-card__columns {
@@ -698,7 +720,7 @@
 }
 
 .prof-card__email a {
-    @apply text-sm font-semibold no-underline;
+    @apply text-sm font-light no-underline;
     color: #fff;
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
@@ -868,7 +890,7 @@
 }
 
 .service-nav__link {
-    @apply text-3xl font-semibold uppercase tracking-wider no-underline flex-1 text-center py-2 ;
+    @apply text-4xl font-semibold uppercase tracking-wider no-underline flex-1 text-center py-2 ;
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     color: #2E2E2E;
     transition: all 200ms ease-in-out;
@@ -1083,8 +1105,8 @@
     }
 
     .service-section__title {
-        @apply text-6xl;
-		color:#9A1D1C;
+        font-size: 1.25rem;
+        color: #9A1D1C;
     }
 
     .service-accordion__table {
@@ -1093,17 +1115,26 @@
 
     .service-accordion__table thead th,
     .service-accordion__table tbody td {
-        @apply px-2 py-2;
+        @apply px-1 py-1 text-xs;
+        font-size: 10px;
     }
 
     .service-accordion__blocks {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-accordion__block-card {
+        @apply p-2;
     }
 }
 
 @media (max-width: 480px) {
     .service-accordion__blocks {
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .service-accordion__block-card {
+        @apply p-2;
     }
 }
 

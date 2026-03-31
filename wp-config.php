@@ -20,13 +20,13 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'zmorrzyewd_wp777c' );
+define( 'DB_NAME', 'zmorrzyewd_db2' );
 
 /** Database username */
-define( 'DB_USER', 'zmorrzyewd_452' );
+define( 'DB_USER', 'zmorrzyewd_2' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'eecZcGYPHPurSw2uBBy9' );
+define( 'DB_PASSWORD', 'BBRaQe3PL7hYeFYcY6g8' );
 
 /** Database hostname */
 define( 'DB_HOST', 'dedi1011.jnb2.host-h.net' );
@@ -36,8 +36,8 @@ define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
-define( 'WP_HOME', 'http://morrowandmorrrow.test/' );
-define( 'WP_SITEURL', 'http://morrowandmorrrow.test/' );
+define( 'WP_HOME', 'http://z-morrowandmorrow.co.za.dedi1011.jnb2.host-h.net/' );
+define( 'WP_SITEURL', 'http://z-morrowandmorrow.co.za.dedi1011.jnb2.host-h.net/' );
 /**#@+
  * Authentication unique keys and salts.
  *
